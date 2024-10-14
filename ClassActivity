@@ -1,0 +1,138 @@
+Requesting a Cloud Shell.Succeeded. 
+Connecting terminal...
+
+Welcome to Azure Cloud Shell
+
+Type "az" to use Azure CLI
+Type "help" to learn about Cloud Shell
+
+mbe5290 [ ~ ]$ python3 -m venv venv
+source venv/bin/activate
+pip install flask
+Requirement already satisfied: flask in ./venv/lib/python3.9/site-packages (3.0.3)
+Requirement already satisfied: blinker>=1.6.2 in ./venv/lib/python3.9/site-packages (from flask) (1.8.2)
+Requirement already satisfied: click>=8.1.3 in ./venv/lib/python3.9/site-packages (from flask) (8.1.7)
+Requirement already satisfied: Jinja2>=3.1.2 in ./venv/lib/python3.9/site-packages (from flask) (3.1.4)
+Requirement already satisfied: importlib-metadata>=3.6.0 in ./venv/lib/python3.9/site-packages (from flask) (8.5.0)
+Requirement already satisfied: itsdangerous>=2.1.2 in ./venv/lib/python3.9/site-packages (from flask) (2.2.0)
+Requirement already satisfied: Werkzeug>=3.0.0 in ./venv/lib/python3.9/site-packages (from flask) (3.0.4)
+Requirement already satisfied: zipp>=3.20 in ./venv/lib/python3.9/site-packages (from importlib-metadata>=3.6.0->flask) (3.20.2)
+Requirement already satisfied: MarkupSafe>=2.0 in ./venv/lib/python3.9/site-packages (from Jinja2>=3.1.2->flask) (3.0.1)
+
+[notice] A new release of pip is available: 23.0.1 -> 24.2
+[notice] To update, run: pip install --upgrade pip
+(venv) mbe5290 [ ~ ]$ mkdir ~/BestBikeApp
+cd ~/BestBikeApp
+mkdir: cannot create directory ‘/home/mbe5290/BestBikeApp’: File exists
+(venv) mbe5290 [ ~/BestBikeApp ]$ cat >application.py <<EOL
+from flask import Flask
+app = Flask(__name__)
+
+@app.route("/")
+def hello():
+    return "<html><body><h1>Hello Best Bike App!</h1></body></html>\n"
+EOL
+(venv) mbe5290 [ ~/BestBikeApp ]$ pip freeze > requirements.txt
+(venv) mbe5290 [ ~/BestBikeApp ]$ export APPNAME=$(az webapp list --query [0].name --output tsv)
+export APPRG=$(az webapp list --query [0].resourceGroup --output tsv)
+export APPPLAN=$(az appservice plan list --query [0].name --output tsv)
+export APPSKU=$(az appservice plan list --query [0].sku.name --output tsv)
+export APPLOCATION=$(az appservice plan list --query [0].location --output tsv)
+/usr/lib64/az/lib/python3.9/site-packages/paramiko/pkey.py:100: CryptographyDeprecationWarning: TripleDES has been moved to cryptography.hazmat.decrepit.ciphers.algorithms.TripleDES and will be removed from this module in 48.0.0.
+  "cipher": algorithms.TripleDES,
+/usr/lib64/az/lib/python3.9/site-packages/paramiko/transport.py:259: CryptographyDeprecationWarning: TripleDES has been moved to cryptography.hazmat.decrepit.ciphers.algorithms.TripleDES and will be removed from this module in 48.0.0.
+  "class": algorithms.TripleDES,
+/usr/lib64/az/lib/python3.9/site-packages/paramiko/pkey.py:100: CryptographyDeprecationWarning: TripleDES has been moved to cryptography.hazmat.decrepit.ciphers.algorithms.TripleDES and will be removed from this module in 48.0.0.
+  "cipher": algorithms.TripleDES,
+/usr/lib64/az/lib/python3.9/site-packages/paramiko/transport.py:259: CryptographyDeprecationWarning: TripleDES has been moved to cryptography.hazmat.decrepit.ciphers.algorithms.TripleDES and will be removed from this module in 48.0.0.
+  "class": algorithms.TripleDES,
+/usr/lib64/az/lib/python3.9/site-packages/paramiko/pkey.py:100: CryptographyDeprecationWarning: TripleDES has been moved to cryptography.hazmat.decrepit.ciphers.algorithms.TripleDES and will be removed from this module in 48.0.0.
+  "cipher": algorithms.TripleDES,
+/usr/lib64/az/lib/python3.9/site-packages/paramiko/transport.py:259: CryptographyDeprecationWarning: TripleDES has been moved to cryptography.hazmat.decrepit.ciphers.algorithms.TripleDES and will be removed from this module in 48.0.0.
+  "class": algorithms.TripleDES,
+/usr/lib64/az/lib/python3.9/site-packages/paramiko/pkey.py:100: CryptographyDeprecationWarning: TripleDES has been moved to cryptography.hazmat.decrepit.ciphers.algorithms.TripleDES and will be removed from this module in 48.0.0.
+  "cipher": algorithms.TripleDES,
+/usr/lib64/az/lib/python3.9/site-packages/paramiko/transport.py:259: CryptographyDeprecationWarning: TripleDES has been moved to cryptography.hazmat.decrepit.ciphers.algorithms.TripleDES and will be removed from this module in 48.0.0.
+  "class": algorithms.TripleDES,
+/usr/lib64/az/lib/python3.9/site-packages/paramiko/pkey.py:100: CryptographyDeprecationWarning: TripleDES has been moved to cryptography.hazmat.decrepit.ciphers.algorithms.TripleDES and will be removed from this module in 48.0.0.
+  "cipher": algorithms.TripleDES,
+/usr/lib64/az/lib/python3.9/site-packages/paramiko/transport.py:259: CryptographyDeprecationWarning: TripleDES has been moved to cryptography.hazmat.decrepit.ciphers.algorithms.TripleDES and will be removed from this module in 48.0.0.
+  "class": algorithms.TripleDES,
+(venv) mbe5290 [ ~/BestBikeApp ]$ cd ~/BestBikeApp
+az webapp up --name $APPNAME --resource-group $APPRG --plan $APPPLAN --sku $APPSKU --location "$APPLOCATION"
+/usr/lib64/az/lib/python3.9/site-packages/paramiko/pkey.py:100: CryptographyDeprecationWarning: TripleDES has been moved to cryptography.hazmat.decrepit.ciphers.algorithms.TripleDES and will be removed from this module in 48.0.0.
+  "cipher": algorithms.TripleDES,
+/usr/lib64/az/lib/python3.9/site-packages/paramiko/transport.py:259: CryptographyDeprecationWarning: TripleDES has been moved to cryptography.hazmat.decrepit.ciphers.algorithms.TripleDES and will be removed from this module in 48.0.0.
+  "class": algorithms.TripleDES,
+The webapp 'ClassActivity' doesn't exist
+Creating AppServicePlan 'ASP-learn3789b456348d401385974dbf13-b73f' or Updating if already exists
+Readonly attribute name will be ignored in class <class 'azure.mgmt.web.v2023_01_01.models._models_py3.AppServicePlan'>
+Creating webapp 'ClassActivity' ...
+Configuring default logging for the app, if not already enabled
+Creating zip with contents of dir /home/mbe5290/BestBikeApp ...
+Getting scm site credentials for zip deployment
+Starting zip deployment. This operation can take a while to complete ...
+Deployment endpoint responded with status code 202
+Polling the status of async deployment. Start Time: 2024-10-14 20:30:09.027130+00:00 UTC
+Status: Building the app... Time: 3(s)
+Status: Build successful. Time: 19(s)
+Status: Site started successfully. Time: 34(s)
+You can launch the app at http://classactivity-e8crb9hhhba6cde6.centralus-01.azurewebsites.net
+Setting 'az webapp up' default arguments for current directory. Manage defaults with 'az configure --scope local'
+--resource-group/-g default: learn-3789b456-348d-4013-8597-4dbf13d77ce9
+--sku default: F1
+--plan/-p default: ASP-learn3789b456348d401385974dbf13-b73f
+--location/-l default: centralus
+--name/-n default: ClassActivity
+{
+  "URL": "http://classactivity-e8crb9hhhba6cde6.centralus-01.azurewebsites.net",
+  "appserviceplan": "ASP-learn3789b456348d401385974dbf13-b73f",
+  "location": "centralus",
+  "name": "ClassActivity",
+  "os": "Linux",
+  "resourcegroup": "learn-3789b456-348d-4013-8597-4dbf13d77ce9",
+  "runtime_version": "python|3.10",
+  "runtime_version_detected": "-",
+  "sku": "FREE",
+  "src_path": "//home//mbe5290//BestBikeApp"
+}
+(venv) mbe5290 [ ~/BestBikeApp ]$ cd ~/BestBikeApp
+az webapp up --name $APPNAME --resource-group $APPRG --plan $APPPLAN --sku $APPSKU --location "$APPLOCATION"
+/usr/lib64/az/lib/python3.9/site-packages/paramiko/pkey.py:100: CryptographyDeprecationWarning: TripleDES has been moved to cryptography.hazmat.decrepit.ciphers.algorithms.TripleDES and will be removed from this module in 48.0.0.
+  "cipher": algorithms.TripleDES,
+/usr/lib64/az/lib/python3.9/site-packages/paramiko/transport.py:259: CryptographyDeprecationWarning: TripleDES has been moved to cryptography.hazmat.decrepit.ciphers.algorithms.TripleDES and will be removed from this module in 48.0.0.
+  "class": algorithms.TripleDES,
+The webapp 'ClassActivity' doesn't exist
+Creating AppServicePlan 'ASP-learn3789b456348d401385974dbf13-b73f' or Updating if already exists
+Readonly attribute name will be ignored in class <class 'azure.mgmt.web.v2023_01_01.models._models_py3.AppServicePlan'>
+Creating webapp 'ClassActivity' ...
+Configuring default logging for the app, if not already enabled
+Creating zip with contents of dir /home/mbe5290/BestBikeApp ...
+Getting scm site credentials for zip deployment
+Starting zip deployment. This operation can take a while to complete ...
+Deployment endpoint responded with status code 202
+Polling the status of async deployment. Start Time: 2024-10-14 20:31:40.369761+00:00 UTC
+Status: Received build request... Time: 0(s)
+Status: Building the app... Time: 15(s)
+Status: Build successful. Time: 32(s)
+Status: Site started successfully. Time: 48(s)
+You can launch the app at http://classactivity-e8crb9hhhba6cde6.centralus-01.azurewebsites.net
+Setting 'az webapp up' default arguments for current directory. Manage defaults with 'az configure --scope local'
+--resource-group/-g default: learn-3789b456-348d-4013-8597-4dbf13d77ce9
+--sku default: F1
+--plan/-p default: ASP-learn3789b456348d401385974dbf13-b73f
+--location/-l default: centralus
+--name/-n default: ClassActivity
+{
+  "URL": "http://classactivity-e8crb9hhhba6cde6.centralus-01.azurewebsites.net",
+  "appserviceplan": "ASP-learn3789b456348d401385974dbf13-b73f",
+  "location": "centralus",
+  "name": "ClassActivity",
+  "os": "Linux",
+  "resourcegroup": "learn-3789b456-348d-4013-8597-4dbf13d77ce9",
+  "runtime_version": "python|3.10",
+  "runtime_version_detected": "-",
+  "sku": "FREE",
+  "src_path": "//home//mbe5290//BestBikeApp"
+}
+(venv) mbe5290 [ ~/BestBikeApp ]$ 
